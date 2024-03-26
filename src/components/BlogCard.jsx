@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import placeholderImage from "../assets/404.jpg";
 
 const BlogCard = ({ blog }) => {
@@ -7,7 +7,7 @@ const BlogCard = ({ blog }) => {
 
   return (
     <Link
-      to={`/blog/${id}`}
+      to={`/blogDetails/${id}`}
       className="max-w-sm mx-auto group transition border-2 hover:scale-105 border-primary border-opacity-30 hover:border-secondary hover:no-underline focus:no-underline bg-gray-900"
     >
       <img
