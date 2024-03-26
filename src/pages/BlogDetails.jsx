@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
-import { MdbookmarkAdd } from "react-icons/md";
+import { MdBookmarkAdd } from "react-icons/md";
+import { saveBlog } from "../utils";
 
 const BlogDetails = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -11,11 +12,14 @@ const BlogDetails = () => {
     title,
     comments_count,
     published_at,
-
     reading_time_minutes,
-
     public_reactions_count,
   } = blogDetails;
+
+  const handleBookmark = (blogDetails) => {
+    console.log(blogDetails);
+    saveBlog(blogDetails);
+  };
 
   return (
     <div className="max-w-2xl px-6 py-16 mx-auto space-y-12">
@@ -83,25 +87,17 @@ const BlogDetails = () => {
               <span>Author</span>
             </Link>
             {/* Bookmarks button */}
+
+            <div
+              onClick={() => handleBookmark(blogDetails)}
+              className="rounded-full bg-primary p-3 ml-3 hover:bg-opacity-30 bg-opacity-20 cursor-pointer hover:scale-105 overflow-hidden "
+            >
+              <MdBookmarkAdd className="text-secondary text-2xl"></MdBookmarkAdd>
+            </div>
           </div>
         </div>
         <Outlet></Outlet>
       </article>
-
-      <div>
-        {/* <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
-          {tags.map((tag) => (
-            <a
-              key={tag}
-              rel="noopener noreferrer"
-              href="#"
-              className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600 dark:text-gray-50"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div> */}
-      </div>
     </div>
   );
 };
